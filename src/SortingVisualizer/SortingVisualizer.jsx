@@ -7,12 +7,11 @@ import {
   generateQuickSortAnimations,
 } from "./SortingAlgorithms";
 
-const arrayLength = 20;
+// const arrayLength = 20;
 const minValue = 5;
 const maxValue = 500;
 // const PRIMARY_COLOR = "#f48825"; // orange
 const PRIMARY_COLOR = "orangered"; // orange
-
 const SECONDARY_COLOR = "white";
 const MAIN_COLOR = "#FFCC00";
 
@@ -21,15 +20,24 @@ export default class SortingVisualizer extends Component {
     super(props);
     this.state = {
       array: [],
+      arrayLength: 80,
     };
   }
+  handleArraySizeChange = (value) => {
+    this.setState({ arrayLength: value });
+    this.resetArray(); // Reset the array with the new size
+  };
 
   componentDidMount() {
     this.resetArray();
   }
 
   resetArray() {
-    const array = generateRandomArray(arrayLength, minValue, maxValue);
+    const array = generateRandomArray(
+      this.state.arrayLength,
+      minValue,
+      maxValue
+    );
     this.setState({ array });
     setTimeout(() => {
       const arrayBars = document.getElementsByClassName("bar");
@@ -193,7 +201,7 @@ export default class SortingVisualizer extends Component {
   }
 
   render() {
-    const { array } = this.state;
+    const { array, arrayLength } = this.state;
 
     return (
       <div>
