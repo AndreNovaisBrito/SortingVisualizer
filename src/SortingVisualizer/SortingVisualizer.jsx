@@ -1,21 +1,18 @@
 import React, { Component } from "react";
 import "./SortingVisualizer.css";
-import { generateInsertionSortAnimations } from "./SortingAlgorithms";
+import {
+  generateBubbleSortAnimations,
+  generateInsertionSortAnimations,
+} from "./SortingAlgorithms";
 
-const arrayLength = 50; // Change this to the desired length of your random array
+const arrayLength = 30; // Change this to the desired length of your random array
 const minValue = 5; // Change this to the minimum value you want in the array
 const maxValue = 500; // Change this to the maximum value you want in the array
+// This is the main color of the array bars.
+const PRIMARY_COLOR = "turquoise";
 
-function generateRandomArray(length, min, max) {
-  const randomArray = [];
-
-  for (let i = 0; i < length; i++) {
-    const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
-    randomArray.push(randomValue);
-  }
-
-  return randomArray;
-}
+// This is the color of array bars that are being compared throughout the animations.
+const SECONDARY_COLOR = "red";
 
 export default class SortingVisualizer extends Component {
   constructor(props) {
@@ -33,6 +30,12 @@ export default class SortingVisualizer extends Component {
   resetArray() {
     const array = generateRandomArray(arrayLength, minValue, maxValue);
     this.setState({ array });
+    setTimeout(() => {
+      const arrayBars = document.getElementsByClassName("bar");
+      for (let i = 0; i < arrayBars.length; i++) {
+        arrayBars[i].style.backgroundColor = "orange";
+      }
+    }, 0);
   }
 
   insertionSort() {
@@ -43,23 +46,58 @@ export default class SortingVisualizer extends Component {
     // Create an animation loop
     let animationIndex = 0;
     const animate = () => {
+      const arrayBars = document.getElementsByClassName("bar");
       if (animationIndex < animations.length) {
         const [index1, index2] = animations[animationIndex];
+
         // Swap the elements in the array
         let temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
 
         this.setState({ array }, () => {
-          // Continue the animation with the next step
+          //   Continue the animation with the next step
+          setTimeout(() => {
+            arrayBars[index1].style.backgroundColor = PRIMARY_COLOR;
+            arrayBars[index2].style.backgroundColor = SECONDARY_COLOR;
+          }, 0);
           animationIndex++;
-
-          // Adjust the frame rate (delay)
           requestAnimationFrame(animate);
         });
       }
     };
+    // Start the animation loop
+    animate();
+  }
 
+  bubbleSort() {
+    const { array } = this.state;
+    const newArray = [...array];
+    const animations = generateBubbleSortAnimations(newArray); // An array to store the animations
+
+    // Create an animation loop
+    let animationIndex = 0;
+    const animate = () => {
+      const arrayBars = document.getElementsByClassName("bar");
+      if (animationIndex < animations.length) {
+        const [index1, index2] = animations[animationIndex];
+
+        // Swap the elements in the array
+        let temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+
+        this.setState({ array }, () => {
+          //   Continue the animation with the next step
+          setTimeout(() => {
+            arrayBars[index1].style.backgroundColor = PRIMARY_COLOR;
+            arrayBars[index2].style.backgroundColor = SECONDARY_COLOR;
+          }, 0);
+          animationIndex++;
+          requestAnimationFrame(animate);
+        });
+      }
+    };
     // Start the animation loop
     animate();
   }
@@ -71,6 +109,8 @@ export default class SortingVisualizer extends Component {
       <div>
         <button onClick={() => this.resetArray()}>Reset Array</button>
         <button onClick={() => this.insertionSort()}>Insertion Sort</button>
+        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
+
         <div className="bar-container" style={{ height: maxValue + "px" }}>
           {array.map((value, index) => (
             <div
@@ -79,10 +119,22 @@ export default class SortingVisualizer extends Component {
               style={{
                 height: `${value}px`,
               }}
-            ></div>
+            >
+              {value}
+            </div>
           ))}
         </div>
       </div>
     );
   }
+}
+
+function generateRandomArray(length, min, max) {
+  const randomArray = [];
+
+  for (let i = 0; i < length; i++) {
+    const randomValue = Math.floor(Math.random() * (max - min + 1)) + min;
+    randomArray.push(randomValue);
+  }
+  return randomArray;
 }
