@@ -209,6 +209,12 @@ export default class SortingVisualizer extends Component {
           <button className="sort-button" onClick={() => this.resetArray()}>
             Reset Array
           </button>
+          <button
+            className="sort-button"
+            onClick={() => window.location.reload()}
+          >
+            Refresh Page
+          </button>
           <button className="sort-button" onClick={() => this.insertionSort()}>
             Insertion Sort
           </button>
