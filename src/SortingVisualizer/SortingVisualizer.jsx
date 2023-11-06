@@ -10,7 +10,9 @@ import {
 const arrayLength = 100;
 const minValue = 5;
 const maxValue = 500;
-const PRIMARY_COLOR = "#f48825"; // orange
+// const PRIMARY_COLOR = "#f48825"; // orange
+const PRIMARY_COLOR = "orangered"; // orange
+
 const SECONDARY_COLOR = "white";
 const MAIN_COLOR = "#FFCC00";
 
@@ -208,9 +210,9 @@ export default class SortingVisualizer extends Component {
           <button className="sort-button" onClick={() => this.quickSort()}>
             Quick Sort
           </button>
-          <button className="sort-button" onClick={() => this.mergeSort()}>
+          {/* <button className="sort-button" onClick={() => this.mergeSort()}>
             Merge Sort
-          </button>
+          </button> */}
         </div>
 
         <div className="bar-container" style={{ height: maxValue + "px" }}>

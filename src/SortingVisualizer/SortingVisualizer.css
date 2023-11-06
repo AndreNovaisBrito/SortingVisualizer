@@ -1,6 +1,12 @@
 .bar-container {
-  position: absolute;
+  /* position: absolute; */
+  position: relative;
   background-color: #4581c0;
+  border-radius: 8px;
+  margin: 10px 10px 10px 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
 }
 .bar {
   width: 15px;
@@ -11,7 +17,7 @@
 }
 
 .sort-button {
-  background-color: black;
+  background-color: orangered;
   color: white;
   border-color: white;
   border-radius: 5%;
