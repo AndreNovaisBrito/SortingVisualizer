@@ -7,7 +7,7 @@ import {
   generateQuickSortAnimations,
 } from "./SortingAlgorithms";
 
-const arrayLength = 100;
+const arrayLength = 20;
 const minValue = 5;
 const maxValue = 500;
 // const PRIMARY_COLOR = "#f48825"; // orange
@@ -222,6 +222,7 @@ export default class SortingVisualizer extends Component {
               className="bar"
               style={{
                 height: `${value}px`,
+                width: `${80 / arrayLength}vw`,
               }}
             >
               {/* {value} */}

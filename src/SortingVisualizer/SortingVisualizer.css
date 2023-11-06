@@ -1,15 +1,14 @@
 .bar-container {
   /* position: absolute; */
   position: relative;
+  width: 95vw;
   background-color: #4581c0;
-  border-radius: 8px;
-  margin: 10px 10px 10px 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
+  border-radius: 1vw;
+  margin: 1vw 1vw 1vw 1vw;
+  padding: 1vw 1vw 1vw 1vw;
 }
 .bar {
-  width: 15px;
+  /* width: 1.3vw; */
   display: inline-block;
   margin: 0 1px;
   background-color: orange;
@@ -29,5 +28,17 @@
 }
 
 .buttons-container {
-  padding-bottom: 3px;
+  margin-left: 1vw;
+  margin-top: 0.5vw;
+}
+
+@media screen and (max-width: 600px) {
+  .bar {
+    width: 1vw;
+  }
+  .sort-button {
+    width: 20vw;
+    margin-right: 2vw;
+    font-size: x-small;
+  }
 }

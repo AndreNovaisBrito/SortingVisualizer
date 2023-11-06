@@ -10,8 +10,8 @@ export function generateInsertionSortAnimations(array) {
       let temp = array[a];
       array[a] = array[a - 1];
       array[a - 1] = temp;
-      animations.push([a, a - 1]);
       // Store the animations (indexes to swap)
+      animations.push([a, a - 1]);
       a--;
     }
   }
