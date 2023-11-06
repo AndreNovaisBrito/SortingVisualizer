@@ -20,7 +20,7 @@ export default class SortingVisualizer extends Component {
     super(props);
     this.state = {
       array: [],
-      arrayLength: 80,
+      arrayLength: 50,
     };
   }
   handleArraySizeChange = (value) => {
@@ -236,7 +236,7 @@ export default class SortingVisualizer extends Component {
               className="bar"
               style={{
                 height: `${value}px`,
-                width: `${80 / arrayLength}vw`,
+                width: `${60 / arrayLength}vw`,
               }}
             >
               {/* {value} */}

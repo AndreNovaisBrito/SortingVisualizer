@@ -34,10 +34,10 @@
 
 @media screen and (max-width: 600px) {
   .bar {
-    width: 1vw;
+    width: 2px;
   }
   .sort-button {
-    width: 20vw;
+    width: 15vw;
     margin-right: 2vw;
     font-size: x-small;
   }
