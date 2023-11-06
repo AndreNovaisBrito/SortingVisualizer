@@ -1,5 +1,6 @@
 .bar-container {
   position: absolute;
+  background-color: #4581c0;
 }
 .bar {
   width: 15px;
@@ -7,4 +8,20 @@
   margin: 0 1px;
   background-color: orange;
   text-align: center;
+}
+
+.sort-button {
+  background-color: black;
+  color: white;
+  border-color: white;
+  border-radius: 5%;
+}
+
+.sort-button:hover {
+  background-color: #ffcc00;
+  border-color: #f48825;
+}
+
+.buttons-container {
+  padding-bottom: 3px;
 }

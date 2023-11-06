@@ -27,7 +27,54 @@ function partition(array, lo, hi) {
   array[hi] = temp;
   return i;
 }
-let array = [5, 4, 3, 2, 1];
 
-quickSort(array, 0, array.length - 1);
+/*---------------- MERGE SORT -----------------------*/
+// Function to merge two subarrays
+function merge(array, left, right, animations) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+
+  while (leftIndex < left.length && rightIndex < right.length) {
+    // Compare the elements and push their indices for animation
+    animations.push([leftIndex, rightIndex]);
+    if (left[leftIndex] < right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+
+  // Add remaining elements, if any
+  return result.concat(left.slice(leftIndex), right.slice(rightIndex));
+}
+
+// Merge sort function
+function mergeSort(array, animations) {
+  const length = array.length;
+  if (length <= 1) {
+    return array;
+  }
+
+  const middle = Math.floor(length / 2);
+  const left = array.slice(0, middle);
+  const right = array.slice(middle);
+
+  const sortedLeft = mergeSort(left, animations);
+  const sortedRight = mergeSort(right, animations);
+
+  return merge(sortedLeft, sortedRight, animations);
+}
+
+function generateMergeSortAnimations(array) {
+  const animations = [];
+  mergeSort(array, animations);
+  return animations;
+}
+
+let array = [5, 4, 3, 2, 1];
+let animations = generateMergeSortAnimations(array);
+mergeSort(array, animations);
 console.log(array);

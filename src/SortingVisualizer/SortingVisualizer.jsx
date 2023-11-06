@@ -3,15 +3,16 @@ import "./SortingVisualizer.css";
 import {
   generateBubbleSortAnimations,
   generateInsertionSortAnimations,
+  generateMergeSortAnimations,
   generateQuickSortAnimations,
 } from "./SortingAlgorithms";
 
-const arrayLength = 90;
+const arrayLength = 100;
 const minValue = 5;
 const maxValue = 500;
-const PRIMARY_COLOR = "turquoise";
-const SECONDARY_COLOR = "red";
-const MAIN_COLOR = "orange";
+const PRIMARY_COLOR = "#f48825"; // orange
+const SECONDARY_COLOR = "white";
+const MAIN_COLOR = "#FFCC00";
 
 export default class SortingVisualizer extends Component {
   constructor(props) {
@@ -45,6 +46,7 @@ export default class SortingVisualizer extends Component {
     let animationIndex = 0;
     const animate = () => {
       const arrayBars = document.getElementsByClassName("bar");
+
       if (animationIndex < animations.length) {
         const [index1, index2] = animations[animationIndex];
 
@@ -57,7 +59,7 @@ export default class SortingVisualizer extends Component {
           //   Continue the animation with the next step
           setTimeout(() => {
             arrayBars[index1].style.backgroundColor = PRIMARY_COLOR;
-            arrayBars[index2].style.backgroundColor = SECONDARY_COLOR;
+            // arrayBars[index2].style.backgroundColor = SECONDARY_COLOR;
           }, 0);
           animationIndex++;
           requestAnimationFrame(animate);
@@ -77,6 +79,14 @@ export default class SortingVisualizer extends Component {
     let animationIndex = 0;
     const animate = () => {
       const arrayBars = document.getElementsByClassName("bar");
+      if (animationIndex === animations.length) {
+        setTimeout(() => {
+          const arrayBars = document.getElementsByClassName("bar");
+          for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = MAIN_COLOR;
+          }
+        }, 0);
+      }
       if (animationIndex < animations.length) {
         const [index1, index2] = animations[animationIndex];
 
@@ -109,6 +119,54 @@ export default class SortingVisualizer extends Component {
     let animationIndex = 0;
     const animate = () => {
       const arrayBars = document.getElementsByClassName("bar");
+      if (animationIndex === animations.length) {
+        setTimeout(() => {
+          const arrayBars = document.getElementsByClassName("bar");
+          for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = MAIN_COLOR;
+          }
+        }, 0);
+      }
+      if (animationIndex < animations.length) {
+        const [index1, index2] = animations[animationIndex];
+
+        // Swap the elements in the array
+        let temp = array[index1];
+        array[index1] = array[index2];
+        array[index2] = temp;
+
+        this.setState({ array }, () => {
+          //   Continue the animation with the next step
+          setTimeout(() => {
+            arrayBars[index1].style.backgroundColor = PRIMARY_COLOR;
+            arrayBars[index2].style.backgroundColor = SECONDARY_COLOR;
+          }, 0);
+          animationIndex++;
+          requestAnimationFrame(animate);
+        });
+      }
+    };
+    // Start the animation loop
+    animate();
+  }
+
+  mergeSort() {
+    const { array } = this.state;
+    const newArray = [...array];
+    const animations = generateMergeSortAnimations(newArray); // An array to store the animations
+
+    // Create an animation loop
+    let animationIndex = 0;
+    const animate = () => {
+      const arrayBars = document.getElementsByClassName("bar");
+      if (animationIndex === animations.length) {
+        setTimeout(() => {
+          const arrayBars = document.getElementsByClassName("bar");
+          for (let i = 0; i < arrayBars.length; i++) {
+            arrayBars[i].style.backgroundColor = MAIN_COLOR;
+          }
+        }, 0);
+      }
       if (animationIndex < animations.length) {
         const [index1, index2] = animations[animationIndex];
 
@@ -137,10 +195,23 @@ export default class SortingVisualizer extends Component {
 
     return (
       <div>
-        <button onClick={() => this.resetArray()}>Reset Array</button>
-        <button onClick={() => this.insertionSort()}>Insertion Sort</button>
-        <button onClick={() => this.bubbleSort()}>Bubble Sort</button>
-        <button onClick={() => this.quickSort()}>Quick Sort</button>
+        <div className="buttons-container">
+          <button className="sort-button" onClick={() => this.resetArray()}>
+            Reset Array
+          </button>
+          <button className="sort-button" onClick={() => this.insertionSort()}>
+            Insertion Sort
+          </button>
+          <button className="sort-button" onClick={() => this.bubbleSort()}>
+            Bubble Sort
+          </button>
+          <button className="sort-button" onClick={() => this.quickSort()}>
+            Quick Sort
+          </button>
+          <button className="sort-button" onClick={() => this.mergeSort()}>
+            Merge Sort
+          </button>
+        </div>
 
         <div className="bar-container" style={{ height: maxValue + "px" }}>
           {array.map((value, index) => (
