@@ -1,12 +1,13 @@
 .bar-container {
-  /* position: absolute; */
+  align-items: center;
   position: relative;
   width: 95vw;
   background-color: #4581c0;
   border-radius: 1vw;
   margin: 0 auto;
-  padding: 1vw 1vw 1vw 1vw;
+  padding: 1vw;
 }
+
 .bar {
   /* width: 1.3vw; */
   display: inline-block;
@@ -28,14 +29,11 @@
 }
 
 .buttons-container {
-  margin-left: 1vw;
+  margin-left: 2vw;
   margin-top: 0.5vw;
 }
 
 @media screen and (max-width: 600px) {
-  .bar {
-    width: 2px;
-  }
   .sort-button {
     width: 15vw;
     margin-right: 2vw;
