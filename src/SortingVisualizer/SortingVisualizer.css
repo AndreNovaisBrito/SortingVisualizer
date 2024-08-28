@@ -2,7 +2,7 @@
   align-items: center;
   position: relative;
   width: 95vw;
-  background-color: #4581c0;
+  background-color: #0f172a;
   border-radius: 1vw;
   margin: 0 auto;
   padding: 1vw;
@@ -12,20 +12,20 @@
   /* width: 1.3vw; */
   display: inline-block;
   margin: 0 1px;
-  background-color: orange;
+  background-color: #c0caf5;
   text-align: center;
 }
 
 .sort-button {
-  background-color: orangered;
-  color: white;
-  border-color: white;
+  background-color: #7aa2f7;
+  color: #0f172a;
+  border-color: #7aa2f7;
   border-radius: 5%;
 }
 
 .sort-button:hover {
-  background-color: #ffcc00;
-  border-color: #f48825;
+  background-color: #7aa2f7;
+  border-color: #7aa2f7;
 }
 
 .buttons-container {

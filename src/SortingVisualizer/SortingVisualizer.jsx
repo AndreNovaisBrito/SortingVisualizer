@@ -10,10 +10,9 @@ import {
 // const arrayLength = 20;
 const minValue = 5;
 const maxValue = 500;
-// const PRIMARY_COLOR = "#f48825"; // orange
-const PRIMARY_COLOR = "orangered"; // orange
+const PRIMARY_COLOR = "#c0caf5";
 const SECONDARY_COLOR = "white";
-const MAIN_COLOR = "#FFCC00";
+const MAIN_COLOR = "#7aa2f7";
 
 export default class SortingVisualizer extends Component {
   constructor(props) {
